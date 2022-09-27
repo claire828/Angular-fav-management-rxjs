@@ -1,0 +1,24 @@
+
+
+<div class="wrap">
+
+    <gg-lottery-management-menu-item 
+        [iconPath]="'assets/images/icons/fav0.svg'"
+        [id]="collectionID" 
+        [focus]="(focusId$ | async) === collectionID" 
+        (switchMenu)="onSwitchMenu($event)" >
+        我的收藏
+    </gg-lottery-management-menu-item>
+
+    <ng-container *ngFor="let menu of lotteryMenus$ | async" >
+        <gg-lottery-management-menu-item 
+            [iconPath]="'assets/images/icons/'+ menu.image + '.svg'"
+            [id]="menu.id" 
+            [focus]="(focusId$ | async) === menu.id " 
+            (switchMenu)="onSwitchMenu($event)" > 
+            {{menu.name}}
+        </gg-lottery-management-menu-item>
+    </ng-container>
+    
+
+</div>

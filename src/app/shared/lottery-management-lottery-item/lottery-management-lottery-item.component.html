@@ -1,0 +1,9 @@
+
+<div class="wrap" >
+    <div class="container" 
+        style="background-image: url({{bgUrl}});" >
+        <gg-lottery-icon [menuNode]="lottery" [lotteryGame]="lotteryGame" class="svg-fill-white"></gg-lottery-icon>
+    </div>
+    <span class="mt-1"> {{lotteryName || lottery?.name}}</span>
+    <span *ngIf="lotteryGame" class="time"> {{ countDown$ | async}}</span>
+</div>

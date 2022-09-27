@@ -1,0 +1,7 @@
+
+<div (click)="onClick()" 
+    [class.active]="focus"
+     class="container" >
+        <div class="ml-20 icon" [inlineSVG]="iconPath"></div>
+        <span><ng-content></ng-content></span>
+</div>

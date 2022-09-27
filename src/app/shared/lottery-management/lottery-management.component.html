@@ -1,0 +1,35 @@
+<div class="flex space-x-4 management-wrap">
+    <div class="present-container">
+        <div class="title">{{ genreTitle$ | async  }}</div>
+        <div class="content-info"> 
+            <ng-container *ngTemplateOutlet="(inCollection$ | async) ? collect : lottery "></ng-container>
+        </div>
+    </div>
+
+    <gg-lottery-management-menu></gg-lottery-management-menu>
+</div>
+
+
+<ng-template #collect>
+    <button (click)="showMyFav();" class="edit-btn" >編輯</button>
+    <gg-lottery-management-lottery-item 
+        *ngFor="let game of (fav$ | async)"
+        [lotteryGame]="game"
+        [lotteryName]="game.game_value"
+        [time]="game.lottery_cycle_now.now_cycle_count_down"
+        [bgUrl]="strGerneBg+'/'+game.base_game+'.svg'" 
+        [routerLink]="['/lottery',game.game_id]" >
+    </gg-lottery-management-lottery-item>
+</ng-template>
+
+
+<ng-template #lottery>
+    <ng-container *ngFor="let game of subGamesOfCurrentMenu$ | async" >
+        <gg-lottery-management-lottery-item *ngIf="game.is_active"
+            [lottery]="game"
+            [bgUrl]="strGerneBg+'/'+(genreNode$ | async).image+'.svg'" 
+            [routerLink]="['/lottery',game.lottery_id]" >
+        </gg-lottery-management-lottery-item>
+    </ng-container>
+    
+</ng-template>
